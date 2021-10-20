@@ -8,6 +8,7 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
+import CartWidget  from './CartWidget';
 
 const Menu = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +36,7 @@ const Menu = (props) => {
             </NavItem>
           </Nav>
         </Collapse>
+        <CartWidget  />
       </Navbar>
     </div>
   );
