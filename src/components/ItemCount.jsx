@@ -5,7 +5,7 @@ import {ButtonGroup, Button} from '@mui/material/'
 
 
 const ItemCount = ({inicial,stock,onAdd}) => { 
-    const [count, setCount] = useState(1);
+    const [count, setCount] = useState(inicial);
     //Funcion para decrementar el contador
     function onDecrease(){
         count > inicial ? setCount(count - 1) : console.log("no se puede restar esta cantidad")    
