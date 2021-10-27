@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button, ButtonGroup } from 'reactstrap';
+import {ButtonGroup, Button} from '@mui/material/'
+//import { Button, ButtonGroup } from 'reactstrap';
 
 
 
@@ -17,14 +18,15 @@ const ItemCount = ({inicial,stock,onAdd}) => {
     
     return(
     <div>
-        <ButtonGroup>
+
+         <ButtonGroup variant="contained" aria-label="outlined primary button group">
             <Button onClick={onDecrease} disabled={count<=inicial}  color="info">-</Button>
             <span> {count} </span>
             <Button onClick={onIncrease} disabled={count===stock}  color="info">+</Button>
         </ButtonGroup> 
         
         <div style={{ marginTop: '.5rem' }}>
-        <Button onClick={()=>onAdd(count)} color="primary">Agregar al Carrito</Button>
+        <Button onClick={()=>onAdd(count)} color="primary" variant="contained">Agregar al Carrito</Button>
         </div>
     </div>    
     )

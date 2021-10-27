@@ -1,12 +1,12 @@
+import { Grid } from '@mui/material';
 import React from 'react';
-import { CardDeck } from 'reactstrap';
 import ItemList from '../components/ItemList';
 
 const ItemContainer = () => {
   return (
-    <CardDeck>
+    <Grid container spacing={2} justifyContent="center" alignItems="center">
       <ItemList/>
-    </CardDeck>
+    </Grid>
   );
 }
 export default ItemContainer;
