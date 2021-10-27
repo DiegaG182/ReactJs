@@ -1,4 +1,4 @@
-import ItemContainer from "./ItemContainer";
+import ItemsContainer from "./ItemsContainer";
 
 const ItemListContainer = ({greeting}) =>{
         
@@ -6,7 +6,7 @@ const ItemListContainer = ({greeting}) =>{
     <>
         <p>{greeting}</p>
         <div className="container">
-        <ItemContainer />
+        <ItemsContainer />
         </div>
     </>    
     )
