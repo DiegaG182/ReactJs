@@ -9,7 +9,7 @@ export default function ItemDetail(product) {
         }
         return (
             <Grid item >
-            <Card key={product.key} sx={{ maxWidth:"480" }}>
+            <Card key={product.id} sx={{ maxWidth:"480" }}>
                 <CardMedia 
                 component="img"
                 alt={product.description}

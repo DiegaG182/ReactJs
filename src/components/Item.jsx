@@ -3,17 +3,17 @@ import ItemCount from './ItemCount'
 import {Card, CardActions , CardContent , CardMedia ,
         Button , Typography, Grid } from '@mui/material';
 import Loading from './Loading';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Item(product) {
     const handleClick=(contador) =>{
         alert(`La cantidad agregada es ${contador}`)
         }
-        
-
+        console.log(product)
+  
         return (
             <Grid item >
-            <Card key={product.key} sx={{ maxWidth: 256 }}>
+            <Card key={product.id} sx={{ maxWidth: 256 }}>
                 <CardMedia 
                 component="img"
                 alt={product.description}
@@ -29,7 +29,7 @@ export default function Item(product) {
                      onAdd={handleClick}
                     />
                 <CardActions>
-                    <Link to={`/detalle/${product.key}`}> 
+                    <Link to={`/product/${product.id}`}> 
                         <Button color="secondary" variant="contained" fullWidth="true"> Detalle </Button>
                     </Link>
                 </CardActions>

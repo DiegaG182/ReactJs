@@ -23,16 +23,16 @@ const Menu = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/notebooks/">Notebooks</NavLink>
+              <NavLink href="/category/notebooks/">Notebooks</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/placas/">Placas de Video</NavLink>
+              <NavLink href="/category/discos/">Discos Rigidos</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/placas/">Fuentes</NavLink>
+              <NavLink href="/category/placas/">Placa de Video</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/placas/">PC Gamer</NavLink>
+              <NavLink href="/category/pc/">PC Gamer</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
