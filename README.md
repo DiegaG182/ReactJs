@@ -1,70 +1,164 @@
-# Getting Started with Create React App
+# E-Commerce - React JS -  Camada 16965 - Diego Garcia Sanchez
+___
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este es el proyecto final del curso de react JS de Coderhouse, construido en [React 17.0.2	](https://github.com/facebook/react/blob/main/CHANGELOG.md#1702-march-22-2021) creado con [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+El proyecto de e-commerce en su primer entrega cuenta con un nabvar con carrito, ademas de links por categoria y un catalogo de productos a vender, con posibilidad de filtrar por cada categoria y ver el detalle de cada producto.
 
-In the project directory, you can run:
+## Dependencias
+___    
 
-### `npm start`
+- [react-router-dom 5.3.0](https://reactrouter.com/web/guides/quick-start)
+- [reactstrap 8.10.0](https://reactstrap.github.io/)
+- [@mui/material 5.0.6](https://material.io/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Instalacion
+___
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Clonar el repositorio: necesitaras `node` y `npm`
 
-### `npm test`
+`git clone https://github.com/DiegaG182/ReactJs.git`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+acceder a cd diegogarciasanchez
 
-### `npm run build`
+### Repositorio
+___
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`https://github.com/DiegaG182/ReactJs.git`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Componentes Principales
+___
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Navbar
 
-### `npm run eject`
+Dibuja un menu con marca, y enlaces a las diferentes categorias de productos.
+~~~
+<Navbar color="light" light expand="md">
+        <NavbarBrand href="/">Diamond Solutions</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
+            <NavItem>
+              <NavLink href="/category/notebooks/">Notebooks</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/category/discos/">Discos Rigidos</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/category/placas/">Placa de Video</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/category/pc/">PC Gamer</NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+        <CartWidget  />
+      </Navbar>
+~~~
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### CartWidget
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Dibuja el icono del carrito de compras realizado con mui.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+~~~
+<div className="row">
+            <div className="logo">
+                <IconButton aria-label="cart button" >
+                  <ShoppingCartOutlinedIcon/>
+                </IconButton>
+            </div>
+</div>
+~~~
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Loading
 
-## Learn More
+Componente para dibujar un Loading Circular realizado con mui.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+~~~
+<div>
+      <CircularProgress/>
+</div>
+~~~
+### ItemCount 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Componente que dibuja y manipula el contador y el stock de cada producto, que podra agregarse al carrito.
 
-### Code Splitting
+Cuenta con 3 parametros, inical, stock y una funcion que realiza la suma o resta del contador.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+~~~
+<div>
 
-### Analyzing the Bundle Size
+         <ButtonGroup variant="contained" aria-label="outlined primary button group">
+            <Button onClick={onDecrease} disabled={count<=inicial}  color="info">-</Button>
+            <span> {count} </span>
+            <Button onClick={onIncrease} disabled={count===stock}  color="info">+</Button>
+        </ButtonGroup> 
+        
+        <div style={{ marginTop: '.5rem' }}>
+        <Button onClick={()=>onAdd(count)} color="primary" variant="contained">Agregar al Carrito</Button>
+        </div>
+</div> 
+~~~
+### Item
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Dibuja en pantalla cada item.
 
-### Making a Progressive Web App
+~~~
+<Grid item >
+            <Card key={product.id} sx={{ maxWidth: 256 }}>
+                <CardMedia 
+                component="img"
+                alt={product.description}
+                height="186"
+                image={(product.picUrl)}
+                />
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">{product.title}</Typography>
+                    <Typography variant="body2" color="text.secondary">{product.description}</Typography>    
+                    <ItemCount
+                     inicial={1}
+                     stock={product.stock}
+                     onAdd={handleClick}
+                    />
+                <CardActions>
+                    <Link to={`/product/${product.id}`}> 
+                        <Button color="secondary" variant="contained" fullWidth="true"> Detalle </Button>
+                    </Link>
+                </CardActions>
+                </CardContent>   
+            </Card>
+            </Grid>
+~~~
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### ItemDetail 
 
-### Advanced Configuration
+Muestra el detalle del producto seleccionado y permite agregar al carrito de compras la cantidad de items seleccionado en el ItemCount. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+~~~
+<Grid item >
+            <Card key={product.id} sx={{ maxWidth:"480" }}>
+                <CardMedia 
+                component="img"
+                alt={product.description}
+                height="300"
+                image={(product.picUrl)}
+                />
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">{product.title}</Typography>
+                    <Typography variant="body2" color="text.secondary">{product.description}</Typography>    
+                    
+                <CardActions>
+                <ItemCount
+                     inicial={1}
+                     stock={product.stock}
+                     onAdd={handleClick}
+                    />
+                </CardActions>
+                </CardContent>   
+            </Card>
+</Grid>
+~~~
 
-### Deployment
+## Como se ve hasta ahora mi e-commerce
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![mi e-commerce](/preview.jpg)

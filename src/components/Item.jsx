@@ -2,14 +2,12 @@ import React from 'react'
 import ItemCount from './ItemCount'
 import {Card, CardActions , CardContent , CardMedia ,
         Button , Typography, Grid } from '@mui/material';
-import Loading from './Loading';
 import { Link } from 'react-router-dom';
 
 export default function Item(product) {
     const handleClick=(contador) =>{
         alert(`La cantidad agregada es ${contador}`)
         }
-        console.log(product)
   
         return (
             <Grid item >

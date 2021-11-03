@@ -1,7 +1,7 @@
 import React from 'react'
 import ItemCount from './ItemCount'
 import {Card, CardActions , CardContent , CardMedia ,
-        Button , Typography, Grid } from '@mui/material';
+        Typography, Grid } from '@mui/material';
         
 export default function ItemDetail(product) {
     const handleClick=(contador) =>{
