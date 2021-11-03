@@ -161,4 +161,4 @@ Muestra el detalle del producto seleccionado y permite agregar al carrito de com
 
 ## Como se ve hasta ahora mi e-commerce
 
-![mi e-commerce](/Primer entrega Diego Garcia Sanchez.gif)
+![mi e-commerce](/preview.jpg)
