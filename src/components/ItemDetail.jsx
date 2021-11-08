@@ -1,12 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ItemCount from './ItemCount'
 import {Card, CardActions , CardContent , CardMedia ,
         Typography, Grid } from '@mui/material';
         
 export default function ItemDetail(product) {
-    const handleClick=(contador) =>{
-        alert(`La cantidad agregada es ${contador}`)
+
+    const [count, setCont] = useState(0)
+    
+    const onAdd=(contador) =>{
+        setCont(contador)
         }
+
         return (
             <Grid item >
             <Card key={product.id} sx={{ maxWidth:"480" }}>
@@ -24,7 +28,7 @@ export default function ItemDetail(product) {
                 <ItemCount
                      inicial={1}
                      stock={product.stock}
-                     onAdd={handleClick}
+                     onAdd={onAdd}
                     />
                 </CardActions>
                 </CardContent>   
