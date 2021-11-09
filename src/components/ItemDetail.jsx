@@ -1,15 +1,25 @@
 import React, { useState } from 'react'
 import ItemCount from './ItemCount'
 import {Card, CardActions , CardContent , CardMedia ,
-        Typography, Grid } from '@mui/material';
+        Typography, Grid , Button,  } from '@mui/material';
+import { Link } from 'react-router-dom';        
         
 export default function ItemDetail(product) {
+    const inicial = 1;
+    const [count, setCount] = useState(inicial)
+    const [cambiarBoton, setCambiarBoton] = useState(false)
 
-    const [count, setCont] = useState(0)
-    
     const onAdd=(contador) =>{
-        setCont(contador)
-        }
+        setCount(contador)
+    }
+
+    function handlerOnAdd () {
+        onAdd(count)
+        setCount(inicial)
+        setCambiarBoton(true)
+        alert(count)
+    }
+
 
         return (
             <Grid item >
@@ -26,10 +36,16 @@ export default function ItemDetail(product) {
                     
                 <CardActions>
                 <ItemCount
-                     inicial={1}
+                     inicial={inicial}
                      stock={product.stock}
                      onAdd={onAdd}
                     />
+                <div style={{ marginTop: '.5rem' }}>
+                    { cambiarBoton 
+                    ? <Link to="/cart"> <Button color="primary" variant="contained">Finalizar Compra</Button> </Link>     
+                    : <Button onClick={handlerOnAdd} color="primary" variant="contained">Agregar al Carrito</Button>
+                    }    
+                </div>    
                 </CardActions>
                 </CardContent>   
             </Card>

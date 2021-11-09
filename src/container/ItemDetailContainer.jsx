@@ -22,7 +22,7 @@ const ItemDetailContainer = () =>{
     
     
     return(
-    <Grid container spacing={2} justifyContent="center" alignItems="center">
+    <Grid container spacing={2} justifyContent="center" alignItems="center" >
         { loading ? <Loading/> : <ItemDetail key={product.id}  id={product.id} title={product.title} picUrl={product.picUrl} price={product.price} stock={product.stock} description={product.description} />  }
     </Grid> 
     )
