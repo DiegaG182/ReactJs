@@ -15,7 +15,7 @@ const CartContextProvider = ({children}) => {
         
         if(existe) {
             item.cantidad += existe.cantidad  
-            removeItem(cantidad.product.id)   
+            removeItem(existe.product.id)   
         }
         
         setCartList([ ... cartList, item])
