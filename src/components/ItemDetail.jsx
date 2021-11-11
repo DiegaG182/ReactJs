@@ -1,26 +1,20 @@
 import React, { useState } from 'react'
 import ItemCount from './ItemCount'
 import {Card, CardActions , CardContent , CardMedia ,
-        Typography, Grid , Button,  } from '@mui/material';
-import { Link } from 'react-router-dom';        
-        
+        Typography, Grid , Button} from '@mui/material';
+import {useCartContext} from '../context/CartContext'        
 export default function ItemDetail(product) {
-    const inicial = 1;
-    const [count, setCount] = useState(inicial)
-    const [cambiarBoton, setCambiarBoton] = useState(false)
 
+    const {cartList, showCartList, addToCart} = useCartContext()
+
+    const [cont, setCont] = useState(0)
+    const [cambiarBoton, setCambiarBoton] = useState()
+    
     const onAdd=(contador) =>{
-        setCount(contador)
-    }
-
-    function handlerOnAdd () {
-        onAdd(count)
-        setCount(inicial)
-        setCambiarBoton(true)
-        alert(count)
-    }
-
-
+        setCont(contador)
+        addToCart({product, cantidad: contador})
+        }
+        
         return (
             <Grid item >
             <Card key={product.id} sx={{ maxWidth:"480" }}>
@@ -35,17 +29,12 @@ export default function ItemDetail(product) {
                     <Typography variant="body2" color="text.secondary">{product.description}</Typography>    
                     
                 <CardActions>
-                <ItemCount
-                     inicial={inicial}
-                     stock={product.stock}
-                     onAdd={onAdd}
-                    />
                 <div style={{ marginTop: '.5rem' }}>
-                    { cambiarBoton 
-                    ? <Link to="/cart"> <Button color="primary" variant="contained">Finalizar Compra</Button> </Link>     
-                    : <Button onClick={handlerOnAdd} color="primary" variant="contained">Agregar al Carrito</Button>
-                    }    
-                </div>    
+                { !cambiarBoton 
+                ? <ItemCount inicial={1} stock={product.stock} onAdd={onAdd} />
+                : <Button onClick={()=> setCambiarBoton(cambiarBoton)} color="primary" variant="contained">Volver</Button>
+                }    
+                </div>
                 </CardActions>
                 </CardContent>   
             </Card>
