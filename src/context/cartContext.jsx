@@ -12,11 +12,11 @@ const CartContextProvider = ({children}) => {
     function addToCart({item}){
         existe = cartList.find(items => items.product.id === item.product.id) 
         if(existe) {
-            existe.cantidad += item.cantidad    
-            setCartlist (existe)
-        }else{setCartList([ ... cartList, item])}
-
+            item.cantidad += existe.cantidad  
+            removeItem(cantidad.product.id)   
+        }
         
+        setCartList([ ... cartList, item])}
     }
     function showCartList () {
         console.log(cartList)
