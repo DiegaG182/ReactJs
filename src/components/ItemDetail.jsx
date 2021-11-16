@@ -7,20 +7,17 @@ import { Link } from 'react-router-dom';
 
 export default function ItemDetail(product) {
 
-    const {cartList, showCartList, addToCart} = useCartContext()
-
-    const [count, setCount] = useState(0)
-    const [finalizarBoton, setFinalizarBoton] = useState(false)
+    const {addToCart} = useCartContext()
     const initial = 1;
+    const [count, setCount] = useState(initial)
+    const [finalizarBoton, setFinalizarBoton] = useState(false)
+    
 
-    function handlerOnAdd () {
-        onAdd(count)
-        setCount(initial)
-        setFinalizarBoton(true)
-    }
+    
     const onAdd=(contador) =>{
         setCount(contador)
         addToCart({product, cantidad: contador})
+        setFinalizarBoton(true)
         }
         
         return (
@@ -37,8 +34,8 @@ export default function ItemDetail(product) {
                     <Typography variant="body2" color="text.secondary">{product.description}</Typography>    
                     
                 <CardActions>
-                <ItemCount inicial={1} stock={product.stock} onAdd={onAdd} />
-                <Button onClick={handlerOnAdd} color="primary" variant="contained">Agregar al Carrito</Button>
+                <ItemCount inicial={initial} stock={product.stock} onAdd={onAdd} />
+                
                 
                     { finalizarBoton 
                     && <Link to="/cart"> <Button color="primary" variant="contained">Finalizar Compra</Button> </Link>  

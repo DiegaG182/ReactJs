@@ -1,6 +1,7 @@
 import { createContext, useState, useContext } from "react";
 
 
+
 const CartContext = createContext()
 
 export const useCartContext = ()=> useContext(CartContext)
@@ -15,9 +16,12 @@ const CartContextProvider = ({children}) => {
         
         if(index > -1) {
             const oldCant = cartList[index].cantidad  
-            cartList.splice(index, 1)
+            const newCant = (item.cantidad + oldCant)
 
-            setCartList([...cartList, {...item, cantidad: (item.cantidad + oldCant) }])   
+            if (newCant <= item.product.stock) 
+            {   cartList.splice(index, 1) 
+                setCartList([...cartList, {...item, cantidad: newCant }])} 
+            else {alert ("La cantidad Agregada Supera el Stock del producto")}    
         }else{setCartList([ ... cartList, item])}
     }
     function showCartList () {

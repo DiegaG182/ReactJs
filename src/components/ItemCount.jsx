@@ -4,8 +4,13 @@ import {ButtonGroup, Button} from '@mui/material/'
 
 const ItemCount = ({inicial,stock,onAdd}) => { 
     const [count, setCount] = useState(inicial);
-/*     const [cambiarBoton, setCambiarBoton] = useState(false)
-    const [finalizarBoton, setFinalizarBoton] = useState(false) */
+    
+
+    function handlerOnAdd () {
+        onAdd(count)
+        setCount(inicial)
+        
+    }
     
     //Funcion para decrementar el contador
     function onDecrease(){
@@ -25,6 +30,7 @@ const ItemCount = ({inicial,stock,onAdd}) => {
             <span> {count} </span>
             <Button onClick={onIncrease} disabled={count===stock}  color="info">+</Button>
         </ButtonGroup> 
+        <Button onClick={handlerOnAdd} color="primary" variant="contained">Agregar al Carrito</Button>
         
         
     </div>    
