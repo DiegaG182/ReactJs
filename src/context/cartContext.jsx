@@ -35,6 +35,9 @@ const CartContextProvider = ({children}) => {
     function totalItemsCart() {   
         return cartList.reduce((acum,prod) => acum + prod.cantidad ,0)        
     } 
+    function isInCart(item) {
+        return cartList.find(items => items.product.id === item.product.id) 
+    }
     
     return (
         
@@ -46,7 +49,7 @@ const CartContextProvider = ({children}) => {
             removeItem,
             totalCart,
             totalItemsCart
-        }} >
+        }} > 
             {children}
         </CartContext.Provider>
 

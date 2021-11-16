@@ -3,21 +3,28 @@ import ItemCount from './ItemCount'
 import {Card, CardActions , CardContent , CardMedia ,
         Typography, Grid , Button} from '@mui/material';
 import {useCartContext} from '../context/CartContext'        
+import { Link } from 'react-router-dom';
 
 export default function ItemDetail(product) {
 
     const {cartList, showCartList, addToCart} = useCartContext()
 
-    const [cont, setCont] = useState(0)
-    const [cambiarBoton, setCambiarBoton] = useState(false)
-    
+    const [count, setCount] = useState(0)
+    const [finalizarBoton, setFinalizarBoton] = useState(false)
+    const initial = 1;
+
+    function handlerOnAdd () {
+        onAdd(count)
+        setCount(initial)
+        setFinalizarBoton(true)
+    }
     const onAdd=(contador) =>{
-        setCont(contador)
+        setCount(contador)
         addToCart({product, cantidad: contador})
         }
         
         return (
-            <Grid item >
+            <Grid  >
             <Card key={product.id} sx={{ maxWidth:"480" }}>
                 <CardMedia 
                 component="img"
@@ -30,11 +37,12 @@ export default function ItemDetail(product) {
                     <Typography variant="body2" color="text.secondary">{product.description}</Typography>    
                     
                 <CardActions>
-                <div style={{ marginTop: '.5rem' }}>
-                { !cambiarBoton 
-                && <ItemCount inicial={1} stock={product.stock} onAdd={onAdd} />
-                }    
-                </div>
+                <ItemCount inicial={1} stock={product.stock} onAdd={onAdd} />
+                <Button onClick={handlerOnAdd} color="primary" variant="contained">Agregar al Carrito</Button>
+                
+                    { finalizarBoton 
+                    && <Link to="/cart"> <Button color="primary" variant="contained">Finalizar Compra</Button> </Link>  
+                    }    
                 </CardActions>
                 </CardContent>   
             </Card>

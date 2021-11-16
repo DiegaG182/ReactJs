@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import {ButtonGroup, Button} from '@mui/material/'
-import { Link } from 'react-router-dom';
+
 
 const ItemCount = ({inicial,stock,onAdd}) => { 
     const [count, setCount] = useState(inicial);
-    const [cambiarBoton, setCambiarBoton] = useState(false)
-
+/*     const [cambiarBoton, setCambiarBoton] = useState(false)
+    const [finalizarBoton, setFinalizarBoton] = useState(false) */
     
     //Funcion para decrementar el contador
     function onDecrease(){
@@ -15,12 +15,7 @@ const ItemCount = ({inicial,stock,onAdd}) => {
     function onIncrease() {
         count < stock ? setCount(count + 1) : console.log("no se puede sumar esta cantidad")
     }   
-    
-    function handlerOnAdd () {
-        onAdd(count)
-        setCount(inicial)
-        setCambiarBoton(true)
-    }
+
     
     return(
     <div>
@@ -31,12 +26,7 @@ const ItemCount = ({inicial,stock,onAdd}) => {
             <Button onClick={onIncrease} disabled={count===stock}  color="info">+</Button>
         </ButtonGroup> 
         
-        <div style={{ marginTop: '.5rem' }}>
-        { cambiarBoton 
-        ? <Link to="/cart"> <Button color="primary" variant="contained">Finalizar Compra</Button> </Link>     
-        : <Button onClick={handlerOnAdd} color="primary" variant="contained">Agregar al Carrito</Button>
-        }    
-        </div>
+        
     </div>    
     )
 
