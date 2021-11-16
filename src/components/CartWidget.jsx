@@ -6,10 +6,10 @@ import {useCartContext} from '../context/CartContext'
 
 
 const CartWidget = () =>{
-  const { totalItemsCart } = useCartContext();
+  const { totalItemsCart, cartList } = useCartContext();
     return(
         <div className="row">
-            <div>
+            <div hidden={cartList.length > 0 ? false : true}>
             <Link to='/cart'>
                 <IconButton aria-label="cart button" >
                   <ShoppingCartOutlinedIcon/>

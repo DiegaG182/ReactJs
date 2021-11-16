@@ -9,7 +9,7 @@ export default function ItemDetail(product) {
     const {cartList, showCartList, addToCart} = useCartContext()
 
     const [cont, setCont] = useState(0)
-    const [cambiarBoton, setCambiarBoton] = useState()
+    const [cambiarBoton, setCambiarBoton] = useState(false)
     
     const onAdd=(contador) =>{
         setCont(contador)
@@ -32,8 +32,7 @@ export default function ItemDetail(product) {
                 <CardActions>
                 <div style={{ marginTop: '.5rem' }}>
                 { !cambiarBoton 
-                ? <ItemCount inicial={1} stock={product.stock} onAdd={onAdd} />
-                : <Button onClick={()=> setCambiarBoton(cambiarBoton)} color="primary" variant="contained">Volver</Button>
+                && <ItemCount inicial={1} stock={product.stock} onAdd={onAdd} />
                 }    
                 </div>
                 </CardActions>
