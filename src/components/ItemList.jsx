@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import { useParams } from 'react-router';
-import { getProducts } from '../services/GetProducts';
+//import { getProducts } from '../services/GetProducts';
+import { getFirestore } from '../services/GetFirestone';
 import Item from './Item';
 import Loading from './Loading';
 
@@ -12,7 +13,25 @@ const ItemList = () => {
 
     useEffect(() => {
 
-        if(categoryId){
+         const db = getFirestore();
+        
+        if(categoryId){ 
+            const dbQuery = db.collection('items').where('category','==', categoryId).get();   
+            dbQuery
+            .then(
+                resp => setProducts( resp.docs.map( prod => ( { id: prod.id, ...prod.data() } ) ) )            
+            ).catch(err => console.log(err))
+             .finally(()=> setLoading(false))
+        }else{
+            const dbQuery = db.collection('items').get();   
+            dbQuery
+            .then(
+                resp => setProducts( resp.docs.map( prod => ( { id: prod.id, ...prod.data() } ) ) )            
+            ).catch(err => console.log(err))
+             .finally(()=> setLoading(false))
+        }    
+        
+        /*if(categoryId){
         getProducts
         .then( resp => {        
             console.log('..llamada a api..')
@@ -28,7 +47,7 @@ const ItemList = () => {
             })    
             .catch(err => console.log(err))
             .finally(()=> setLoading(false))
-        }
+        } */
     },[categoryId])   
   
     return (

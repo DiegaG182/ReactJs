@@ -9,7 +9,6 @@ const ItemCount = ({inicial,stock,onAdd}) => {
     function handlerOnAdd () {
         onAdd(count)
         setCount(inicial)
-        
     }
     
     //Funcion para decrementar el contador
