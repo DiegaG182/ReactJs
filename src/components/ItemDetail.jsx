@@ -34,12 +34,10 @@ export default function ItemDetail(product) {
                     <Typography variant="body2" color="text.secondary">{product.description}</Typography>    
                     
                 <CardActions>
-                <ItemCount inicial={initial} stock={product.stock} onAdd={onAdd} />
-                
-                
-                    { finalizarBoton 
-                    && <Link to="/cart"> <Button color="primary" variant="contained">Finalizar Compra</Button> </Link>  
-                    }    
+                { finalizarBoton 
+                ? <Link to="/cart"> <Button color="primary" variant="contained">Finalizar Compra</Button> </Link>  
+                : <ItemCount inicial={initial} stock={product.stock} onAdd={onAdd} />
+                }    
                 </CardActions>
                 </CardContent>   
             </Card>
