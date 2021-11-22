@@ -1,5 +1,4 @@
 import {useEffect, useState} from 'react';
-//import { getProducts } from '../services/GetProducts';
 import { getFirestore } from '../services/GetFirestone';
 import ItemDetail from "../components/ItemDetail";
 import { Grid } from '@mui/material';
@@ -12,16 +11,6 @@ const ItemDetailContainer = () =>{
     const {productId} = useParams()
 
     useEffect(() => {
-      /*   getProducts
-        .then( resp => {        
-            console.log("...Llamada a una API..")
-            setProduct(resp.find(item => item.id === (parseInt(productId))))
-        })    
-        .catch(err => console.log(err))
-        .finally(()=> setLoading(false)) */
-
-
-        //setProduct( resp.docs.map( prod => ( { id: prod.id, ...prod.data() } ) ) )  
 
         const db = getFirestore();
         const dbQuery = db.collection('items').doc(productId).get();   
