@@ -8,6 +8,7 @@ export const useCartContext = ()=> useContext(CartContext)
 
 const CartContextProvider = ({children}) => {
     const [cartList, setCartList] = useState([])
+    const [userData, setUserData] = useState({name:"", surname:"", phone:"", email:""});
     
     
     function addToCart(item){
@@ -42,6 +43,12 @@ const CartContextProvider = ({children}) => {
     function isInCart(item) {
         return cartList.find(items => items.product.id === item.product.id) 
     }
+
+    const handleForm = (e) => {
+        setUserData({
+            ...userData, [e.target.name]: e.target.value
+        })
+    }
     
     return (
         
@@ -52,7 +59,9 @@ const CartContextProvider = ({children}) => {
             removeCart,
             removeItem,
             totalCart,
-            totalItemsCart
+            totalItemsCart,
+            userData,
+            handleForm
         }} > 
             {children}
         </CartContext.Provider>
