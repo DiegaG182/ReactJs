@@ -2,7 +2,7 @@ import {useState} from 'react'
 import {useCartContext} from '../context/CartContext'
 import { Link } from 'react-router-dom';
 import {Card, CardActions , CardContent , CardMedia ,
-    Button , Grid , Alert, AlertTitle } from '@mui/material';
+        Button , Alert, AlertTitle } from '@mui/material';
 import {getFirestore} from '../services/GetFirestone';    
 import firebase from 'firebase';
 import 'firebase/firestore';
@@ -88,10 +88,11 @@ export default function Cart() {
             <div className="text-center" >
                 <Button color="secondary" variant="contained" onClick={() => removeCart()} hidden={cartList.length > 0 ? false : true}> Borrar Carrito</Button>
                
+                {orderId!=='' ? <label>El id de su orden es : {orderId}</label> :
                 <Alert  hidden={cartList.length > 0 ? true : false} severity="warning" className="text-center ">
                     <AlertTitle>Carrito Vacio</AlertTitle> No hay productos seleccionados...  
                 </Alert>
-  
+                }
 
                 <Link to='/'>
                         <Button color="secondary" variant="contained">Ir al Inicio</Button>

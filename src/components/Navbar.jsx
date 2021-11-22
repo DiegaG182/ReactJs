@@ -9,9 +9,11 @@ import {
   NavLink,
 } from 'reactstrap';
 import CartWidget  from './CartWidget';
+import {useCartContext} from '../context/CartContext'
 
 const Menu = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { cartList, totalCart   } = useCartContext();
 
   const toggle = () => setIsOpen(!isOpen);
 
