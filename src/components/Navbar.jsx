@@ -8,6 +8,7 @@ import {
   NavItem,
   NavLink,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import CartWidget  from './CartWidget';
 import {useCartContext} from '../context/CartContext'
 
@@ -20,21 +21,21 @@ const Menu = (props) => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Diamond Solutions</NavbarBrand>
+        <NavbarBrand> <Link to="/"> Diamond Solutions</Link></NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/category/notebooks/">Notebooks</NavLink>
+              <NavLink> <Link to="/category/notebooks/"> Notebooks </Link> </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/category/discos/">Discos Rigidos</NavLink>
+              <NavLink> <Link to="/category/discos/"> Discos Rigidos </Link></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/category/placas/">Placa de Video</NavLink>
+            <NavLink> <Link to="/category/placas/">Placa de Video</Link></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/category/pc/">PC Gamer</NavLink>
+              <NavLink> <Link to="/category/pc/">PC Gamer</Link></NavLink>
             </NavItem>
           </Nav>
         </Collapse>
