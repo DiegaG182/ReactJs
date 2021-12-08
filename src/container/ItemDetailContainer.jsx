@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 const ItemDetailContainer = () =>{
     const [product, setProduct] = useState([])
     const [loading, setLoading] = useState(true)
-    const [productOK, setproductOK] = useState(false)
     const {productId} = useParams()
 
     useEffect(() => {

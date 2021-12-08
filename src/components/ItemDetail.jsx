@@ -18,6 +18,7 @@ export default function ItemDetail(product) {
         setCount(contador)
         addToCart({product, cantidad: contador})
         setFinalizarBoton(true)
+        console.log(count)
         }
         
         return (
