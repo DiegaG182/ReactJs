@@ -19,12 +19,20 @@ Clonar el repositorio: necesitaras `node` y `npm`
 
 `git clone https://github.com/DiegaG182/ReactJs.git`
 
-acceder a cd diegogarciasanchez
+acceder a ~~~cd diegogarciasanchez~~~
+~~~
+npm start run
+~~~
 
 ### Repositorio
 ___
 
 `https://github.com/DiegaG182/ReactJs.git`
+
+## Como se ve hasta ahora mi e-commerce
+
+`https://coderhouse-react-diegogarciasanchez.netlify.app/`
+
 
 ## Componentes Principales
 ___
@@ -33,22 +41,22 @@ ___
 
 Dibuja un menu con marca, y enlaces a las diferentes categorias de productos.
 ~~~
-<Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Diamond Solutions</NavbarBrand>
+ <Navbar color="light" light expand="md">
+        <NavbarBrand> <Link to="/" style={{ textDecoration: 'none' }}> Diamond Solutions</Link></NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/category/notebooks/">Notebooks</NavLink>
+              <NavLink> <Link to="/category/notebooks/" style={{ textDecoration: 'none' }}> Notebooks </Link> </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/category/discos/">Discos Rigidos</NavLink>
+              <NavLink> <Link to="/category/discos/" style={{ textDecoration: 'none' }}> Discos Rigidos </Link></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/category/placas/">Placa de Video</NavLink>
+            <NavLink> <Link to="/category/placas/" style={{ textDecoration: 'none' }}>Placa de Video</Link></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/category/pc/">PC Gamer</NavLink>
+              <NavLink> <Link to="/category/pc/" style={{ textDecoration: 'none' }}>PC Gamer</Link></NavLink>
             </NavItem>
           </Nav>
         </Collapse>
@@ -61,12 +69,13 @@ Dibuja un menu con marca, y enlaces a las diferentes categorias de productos.
 Dibuja el icono del carrito de compras realizado con mui.
 
 ~~~
-<div className="row">
-            <div className="logo">
+<div>
+            <Link to='/cart'> 
                 <IconButton aria-label="cart button" >
                   <ShoppingCartOutlinedIcon/>
                 </IconButton>
-            </div>
+            </Link>
+            {totalItemsCart()}
 </div>
 ~~~
 
@@ -75,9 +84,11 @@ Dibuja el icono del carrito de compras realizado con mui.
 Componente para dibujar un Loading Circular realizado con mui.
 
 ~~~
-<div>
+ return (
+    <div>
       <CircularProgress/>
-</div>
+    </div>
+  );
 ~~~
 ### ItemCount 
 
@@ -135,8 +146,7 @@ Dibuja en pantalla cada item.
 Muestra el detalle del producto seleccionado y permite agregar al carrito de compras la cantidad de items seleccionado en el ItemCount. 
 
 ~~~
-<Grid item >
-            <Card key={product.id} sx={{ maxWidth:"480" }}>
+<Card key={product.id} sx={{ maxWidth:"480" }}>
                 <CardMedia 
                 component="img"
                 alt={product.description}
@@ -148,17 +158,32 @@ Muestra el detalle del producto seleccionado y permite agregar al carrito de com
                     <Typography variant="body2" color="text.secondary">{product.description}</Typography>    
                     
                 <CardActions>
-                <ItemCount
-                     inicial={1}
-                     stock={product.stock}
-                     onAdd={handleClick}
-                    />
+                { finalizarBoton 
+                ? <Link to="/cart"> <Button color="primary" variant="contained">Finalizar Compra</Button> </Link>  
+                : <ItemCount inicial={initial} stock={product.stock} onAdd={onAdd} />
+                }    
                 </CardActions>
                 </CardContent>   
             </Card>
-</Grid>
 ~~~
+### Cart 
 
-## Como se ve hasta ahora mi e-commerce
+Muestra el Checkout del carrito de compras, con el resumen de tu orden, el total de la compra, y el paso final de completar el formulario de datos para finalizar la compra 
 
-![mi e-commerce](/preview.jpg)
+### ItemDetailContainer 
+
+Contenedor que se encarga de la logica para obtener el producto y mostrar el detalle del mismo en una Card
+### ItemListContainer 
+
+Contenedor que se encarga de la logica para obtener los productos de nuestro Carrito de compras, pudiento traer todos o filtrar por categorias de los productos.
+
+### CartContex
+
+trabaje con createContext  from "react"; 
+
+### Base de Datos
+
+firebase/firestore'
+## Como se ve  mi e-commerce
+
+`https://coderhouse-react-diegogarciasanchez.netlify.app/`

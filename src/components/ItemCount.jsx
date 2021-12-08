@@ -13,11 +13,11 @@ const ItemCount = ({inicial,stock,onAdd}) => {
     
     //Funcion para decrementar el contador
     function onDecrease(){
-        count > inicial ? setCount(count - 1) : console.log("no se puede restar esta cantidad")    
+        count > inicial && setCount(count - 1) 
     }
     //Funcion para incrementar el contador
     function onIncrease() {
-        count < stock ? setCount(count + 1) : console.log("no se puede sumar esta cantidad")
+        count < stock && setCount(count + 1) 
     }   
 
     

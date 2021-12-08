@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 export default function ItemDetail(product) {
 
     const {addToCart} = useCartContext()
-    const initial = 1;
+    const initial = 0;
     const [count, setCount] = useState(initial)
     const [finalizarBoton, setFinalizarBoton] = useState(false)
     
@@ -18,7 +18,6 @@ export default function ItemDetail(product) {
         setCount(contador)
         addToCart({product, cantidad: contador})
         setFinalizarBoton(true)
-        console.log(count)
         }
         
         return (
