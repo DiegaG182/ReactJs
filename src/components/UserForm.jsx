@@ -1,11 +1,14 @@
 import {useCartContext} from '../context/CartContext';
 import { Button } from '@mui/material';
+
+
 const UserForm = ({createOrder}) =>{
 
     const {handleForm, userData, cartList} = useCartContext();
-
+    
+    
     return (
-        <form onChange={handleForm} onSubmit={createOrder} hidden={cartList.length > 0 ? false : true}>
+        <form onKeyUp={handleForm} onSubmit={createOrder} hidden={cartList.length > 0 ? false : true}>
             <legend className="form-legend">Ingresá tus datos</legend>
             <div>
                 <label htmlFor="name" className="form-label">Nombre</label>
@@ -24,7 +27,17 @@ const UserForm = ({createOrder}) =>{
                 <label htmlFor="email" className="form-label">Email</label>
                 <input type="email" name="email" placeholder="mail@tuemail.com" defaultValue={userData.email}/>
             </div>
-            <Button color="secondary" variant="contained" type="submit">Comprar</Button>
+            <div>
+                <label htmlFor="reemail" className="form-label">Revalidar Email</label>
+                <input type="email" name="reemail" placeholder="mail@tuemail.com" defaultValue={userData.reemail}/>
+            </div>
+            <Button color="secondary" variant="contained" type="submit" 
+            disabled={(userData.reemail === userData.email && 
+            userData.name.length > 0 && 
+            userData.surname.length > 0 &&
+            userData.phone.length > 0 &&   
+            userData.email.length > 0) ? false : true}
+            >Comprar</Button>
         </form>
     )
 }

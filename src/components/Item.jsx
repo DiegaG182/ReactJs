@@ -2,6 +2,7 @@ import React from 'react'
 import {Card, CardActions , CardContent , CardMedia ,
         Button , Typography, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
+import '../App.css';
 
 export default function Item(product) {
   
@@ -19,7 +20,7 @@ export default function Item(product) {
                     <Typography variant="body2" color="text.secondary">{product.description}</Typography>    
                     
                 <CardActions>
-                    <Link to={`/product/${product.id}`}> 
+                    <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}> 
                         <Button color="secondary" variant="contained" fullWidth="true"> Detalle </Button>
                     </Link>
                 </CardActions>

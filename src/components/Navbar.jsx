@@ -10,32 +10,33 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import CartWidget  from './CartWidget';
-import {useCartContext} from '../context/CartContext'
+import '../App.css';
+
 
 const Menu = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { cartList, totalCart   } = useCartContext();
+
 
   const toggle = () => setIsOpen(!isOpen);
 
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand> <Link to="/"> Diamond Solutions</Link></NavbarBrand>
+        <NavbarBrand> <Link to="/" style={{ textDecoration: 'none' }}> Diamond Solutions</Link></NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink> <Link to="/category/notebooks/"> Notebooks </Link> </NavLink>
+              <NavLink> <Link to="/category/notebooks/" style={{ textDecoration: 'none' }}> Notebooks </Link> </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink> <Link to="/category/discos/"> Discos Rigidos </Link></NavLink>
+              <NavLink> <Link to="/category/discos/" style={{ textDecoration: 'none' }}> Discos Rigidos </Link></NavLink>
             </NavItem>
             <NavItem>
-            <NavLink> <Link to="/category/placas/">Placa de Video</Link></NavLink>
+            <NavLink> <Link to="/category/placas/" style={{ textDecoration: 'none' }}>Placa de Video</Link></NavLink>
             </NavItem>
             <NavItem>
-              <NavLink> <Link to="/category/pc/">PC Gamer</Link></NavLink>
+              <NavLink> <Link to="/category/pc/" style={{ textDecoration: 'none' }}>PC Gamer</Link></NavLink>
             </NavItem>
           </Nav>
         </Collapse>

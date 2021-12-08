@@ -8,9 +8,8 @@ export const useCartContext = ()=> useContext(CartContext)
 
 const CartContextProvider = ({children}) => {
     const [cartList, setCartList] = useState([])
-    const [userData, setUserData] = useState({name:"", surname:"", phone:"", email:""});
-    
-    
+    const [userData, setUserData] = useState({name:"", surname:"", phone:"", email:"", reemail:""});
+
     function addToCart(item){
         
         const index = cartList.findIndex(items => items.product.id === item.product.id)
@@ -23,11 +22,9 @@ const CartContextProvider = ({children}) => {
             {   cartList.splice(index, 1) 
                 setCartList([...cartList, {...item, cantidad: newCant }])} 
             else {alert ("La cantidad Agregada Supera el Stock del producto")}    
-        }else{setCartList([ ... cartList, item])}
+        }else{setCartList([ ...cartList, item])}
     }
-    function showCartList () {
-        console.log(cartList)
-    }
+
     function removeItem (idItemRemove)  {
         setCartList( cartList.filter(items => items.product.id !== idItemRemove))
     }
@@ -54,7 +51,6 @@ const CartContextProvider = ({children}) => {
         
         <CartContext.Provider value ={{
             cartList,   
-            showCartList,
             addToCart,
             removeCart,
             removeItem,

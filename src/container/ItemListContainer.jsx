@@ -4,13 +4,13 @@ import { useParams } from 'react-router';
 import { getFirestore } from '../services/GetFirestone';
 import Loading from '../components/Loading';
 import { Grid } from '@mui/material';
-import {useCartContext} from '../context/CartContext'
+
 
 const ItemListContainer = ({greeting}) =>{
     const [loading, setLoading] = useState(true)
     const [products, setProducts] = useState([])
     const {categoryId} = useParams()
-    const { cartList, totalCart   } = useCartContext();
+    
 
     useEffect(() => {
 

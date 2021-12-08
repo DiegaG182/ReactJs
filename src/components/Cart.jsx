@@ -7,22 +7,24 @@ import {getFirestore} from '../services/GetFirestone';
 import firebase from 'firebase';
 import 'firebase/firestore';
 import UserForm from './UserForm';
+import '../App.css';
 
 export default function Cart() {
     
     const { cartList, removeItem, removeCart, totalCart , userData  } = useCartContext();
     const [orderId, setOrderId] = useState("");
 
+    
     const createOrder = (e) => {
 
         e.preventDefault()
 
+        //crea la orden con los datos del carrito
         let order = {}
         order.date = firebase.firestore.Timestamp.fromDate(new Date());
         order.buyer = userData;
         order.total = totalCart();
         order.items = cartList.map(itemAdded => {
-            console.log(itemAdded);
             const id = itemAdded.product.id;
             const title = itemAdded.product.title;
             const cantidad = itemAdded.cantidad;
@@ -30,13 +32,15 @@ export default function Cart() {
             return {id, title, cantidad, subtotal}
         })
 
+        //Crea la orden en firebase
         const db = getFirestore()
-        console.log(order);
         db.collection("orders").add(order)
         .then(resp => setOrderId(resp.id))
         .catch (error => console.log(error) )
         .finally(() => removeCart())
-
+        
+        
+        //actualiza Stock en firebase
         const updateStock = db.collection("items").where
         (firebase.firestore.FieldPath.documentId(), "in", cartList.map(idToUpdate => idToUpdate.product.id ) ) 
        
@@ -94,7 +98,7 @@ export default function Cart() {
                 </Alert>
                 }
 
-                <Link to='/'>
+                <Link to='/' style={{ textDecoration: 'none' }}>
                         <Button color="secondary" variant="contained">Ir al Inicio</Button>
                 </Link>
             </div>
