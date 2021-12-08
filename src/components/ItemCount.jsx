@@ -29,7 +29,7 @@ const ItemCount = ({inicial,stock,onAdd}) => {
             <span> {count} </span>
             <Button onClick={onIncrease} disabled={count===stock}  color="info">+</Button>
         </ButtonGroup> 
-        <Button onClick={handlerOnAdd} color="primary" variant="contained">Agregar al Carrito</Button>
+        <Button onClick={handlerOnAdd} color="primary" variant="contained" hidden={count===0}>Agregar al Carrito</Button>
         
         
     </div>    
