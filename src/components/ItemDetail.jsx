@@ -9,7 +9,7 @@ export default function ItemDetail(product) {
 
     const {addToCart} = useCartContext()
     const initial = 0;
-    const [count, setCount] = useState(initial)
+    const [, setCount] = useState(initial)
     const [finalizarBoton, setFinalizarBoton] = useState(false)
     
 
@@ -18,6 +18,7 @@ export default function ItemDetail(product) {
         setCount(contador)
         addToCart({product, cantidad: contador})
         setFinalizarBoton(true)
+        
         }
         
         return (
